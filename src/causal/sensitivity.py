@@ -94,6 +94,7 @@ def dowhy_sensitivity(
 
     try:
         from dowhy.causal_refuters.linear_sensitivity_analyzer import LinearSensitivityAnalyzer
+
         from src.causal.graph import build_dowhy_model
 
         model, estimand = build_dowhy_model(
@@ -139,9 +140,10 @@ def run_full_sensitivity(
 
 
 if __name__ == "__main__":
-    from src.data.synthetic import FEATURE_COLS, generate
-    from src.causal.estimators import TLearner
     from sklearn.model_selection import train_test_split
+
+    from src.causal.estimators import TLearner
+    from src.data.synthetic import FEATURE_COLS, generate
 
     ARTIFACTS_DIR.mkdir(exist_ok=True)
 

@@ -18,3 +18,4 @@ htmlcov/
 .coverage
 *.log
 notebooks/.ipynb_checkpoints/
+mlflow.db

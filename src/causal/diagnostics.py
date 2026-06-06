@@ -7,6 +7,7 @@ from __future__ import annotations
 import logging
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -129,7 +130,7 @@ def trim_common_support(
 
 
 if __name__ == "__main__":
-    from src.data.synthetic import generate, FEATURE_COLS
+    from src.data.synthetic import FEATURE_COLS, generate
 
     df, true_tau, true_ate = generate()
     prop = estimate_propensity(df, FEATURE_COLS)

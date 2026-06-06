@@ -3,15 +3,15 @@ Evaluation, Qini curves, policy analysis, and placebo refutation.
 
 Run as: python -m src.evaluate
 """
-import numpy as np
-import pandas as pd
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-from src.data import generate_data, FEATURE_COLS
-from src.learners import fit_all, TLearner
+from src.data import FEATURE_COLS, generate_data
+from src.learners import TLearner, fit_all
 
 
 # ── Qini curve ────────────────────────────────────────────────────────────
@@ -194,7 +194,7 @@ def run_evaluation(verbose=True):
 
 
 def plot_results(results, true_ate, tau_test, placebo_ate, save_path="qini_plot.png"):
-    n_learners = len(results)
+    n_learners = len(results)  # noqa: F841
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
     # 1) Qini curves
@@ -228,7 +228,7 @@ def plot_results(results, true_ate, tau_test, placebo_ate, save_path="qini_plot.
     names = list(results.keys()) + ["Placebo"]
     ates  = [r["recovered_ate"] for r in results.values()] + [placebo_ate]
     colors = ["steelblue"] * len(results) + ["tomato"]
-    bars = ax.bar(range(len(names)), ates, color=colors)
+    bars = ax.bar(range(len(names)), ates, color=colors)  # noqa: F841
     ax.axhline(true_ate, color="green", linestyle="--", label=f"True ATE={true_ate:.2f}")
     ax.set_xticks(range(len(names)))
     ax.set_xticklabels(names, rotation=20, ha="right", fontsize=8)

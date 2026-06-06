@@ -36,7 +36,6 @@ def build_dowhy_model(
     feature_cols  : list of observed covariate names (common causes)
     """
     try:
-        import dowhy
         from dowhy import CausalModel
     except ImportError as e:
         raise ImportError("dowhy is required for causal graph construction") from e

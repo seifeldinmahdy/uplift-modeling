@@ -7,7 +7,6 @@ Run: python -m src.causal.estimators
 from __future__ import annotations
 
 import logging
-import os
 from pathlib import Path
 from typing import Protocol
 
@@ -52,7 +51,7 @@ def _gbc() -> GradientBoostingClassifier:
 
 # ── Protocol ────────────────────────────────────────────────────────────────
 class CATEEstimator(Protocol):
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "CATEEstimator": ...
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> CATEEstimator: ...
     def predict_cate(self, X: pd.DataFrame) -> np.ndarray: ...
 
 
@@ -63,7 +62,7 @@ class SLearner:
     def __init__(self) -> None:
         self._model = _gbr()
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "SLearner":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> SLearner:
         Xt = X.copy()
         Xt["__T__"] = T
         self._model.fit(Xt, Y)
@@ -84,7 +83,7 @@ class TLearner:
         self._m1 = _gbr()
         self._m0 = _gbr()
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "TLearner":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> TLearner:
         mask = T == 1
         self._m1.fit(X[mask], Y[mask])
         self._m0.fit(X[~mask], Y[~mask])
@@ -109,7 +108,7 @@ class XLearner:
         self._prop = LogisticRegression(max_iter=500, C=1.0, random_state=cfg.seed)
         self._scaler = StandardScaler()
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "XLearner":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> XLearner:
         mask = T == 1
         self._m1.fit(X[mask], Y[mask])
         self._m0.fit(X[~mask], Y[~mask])
@@ -143,7 +142,7 @@ class RLearner:
         self._cate_model = _gbr()
         self._scaler = StandardScaler()
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "RLearner":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> RLearner:
         Xs = self._scaler.fit_transform(X)
         # Step 1: fit nuisance models
         self._outcome_model.fit(X, Y)
@@ -178,7 +177,7 @@ class LinearDMLEstimator:
             cv=cfg.estimators.dml_cv_folds,
         )
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "LinearDMLEstimator":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> LinearDMLEstimator:
         self._model.fit(Y, T.astype(float), X=X)
         return self
 
@@ -196,7 +195,7 @@ class CausalForestEstimator:
             cv=cfg.estimators.dml_cv_folds,
         )
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "CausalForestEstimator":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> CausalForestEstimator:
         self._model.fit(Y, T.astype(float), X=X)
         return self
 
@@ -220,7 +219,7 @@ class DRLearnerEstimator:
             cv=cfg.estimators.dml_cv_folds,
         )
 
-    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> "DRLearnerEstimator":
+    def fit(self, X: pd.DataFrame, T: np.ndarray, Y: np.ndarray) -> DRLearnerEstimator:
         self._model.fit(Y, T.astype(int), X=X)
         return self
 

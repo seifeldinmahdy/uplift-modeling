@@ -11,8 +11,6 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
-from src.data import FEATURE_COLS
-
 
 def _default_base():
     return GradientBoostingRegressor(n_estimators=150, max_depth=4, learning_rate=0.05,
