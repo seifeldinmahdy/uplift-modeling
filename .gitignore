@@ -10,3 +10,11 @@ env/
 *.png
 *.csv
 .DS_Store
+mlruns/
+artifacts/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+*.log
+notebooks/.ipynb_checkpoints/

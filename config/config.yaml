@@ -1,0 +1,36 @@
+seed: 42
+
+data:
+  n_samples: 20000
+  test_size: 0.30
+  hillstrom_url: "http://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
+
+treatment:
+  cost_per_unit: 1.0       # cost to treat one individual
+  budget_fraction: 0.30    # default targeting budget (fraction of population)
+
+estimators:
+  n_estimators: 150
+  max_depth: 4
+  learning_rate: 0.05
+  subsample: 0.8
+  min_samples_leaf: 20
+  dml_cv_folds: 3
+  causal_forest_n_estimators: 200
+
+refutation:
+  n_simulations: 50
+  placebo_type: "permute"
+  subset_fraction: 0.80
+
+sensitivity:
+  benchmark_covariate: "loyal"  # covariate to use as confounder benchmark
+  r2_y_values: [0.1, 0.3, 0.5]
+  r2_d_values: [0.1, 0.3, 0.5]
+
+policy:
+  min_uplift_threshold: 0.0   # treat only if predicted CATE > this
+
+mlflow:
+  experiment_name: "causal-uplift-engine"
+  tracking_uri: "mlruns"
