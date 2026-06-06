@@ -34,13 +34,14 @@ from src.data.synthetic import FEATURE_COLS, generate
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Causal Uplift Engine",
+    page_title="Don't Target Buyers — Target the Persuadable",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.title("Causal Uplift & Targeting Engine")
+st.title("Don't Target Buyers — Target the Persuadable")
 st.markdown(
-    "_Heterogeneous treatment effect estimation · budget-constrained targeting · "
+    "_Causal uplift modeling for promotional ROI: who converts **because of** the offer, "
+    "not just who converts · heterogeneous treatment effects · budget-constrained targeting · "
     "formal refutation · sensitivity analysis_"
 )
 

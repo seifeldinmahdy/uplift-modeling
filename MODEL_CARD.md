@@ -1,4 +1,4 @@
-# Model Card — Causal Uplift Engine
+# Model Card — Don't Target Buyers, Target the Persuadable
 
 ## Model Overview
 

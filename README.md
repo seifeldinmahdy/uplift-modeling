@@ -1,6 +1,6 @@
-# Causal Uplift & Targeting Engine
+# Don't Target Buyers — Target the Persuadable
 
-**Production-grade heterogeneous treatment effect estimation with formal causal identification, refutation, sensitivity analysis, and budget-constrained policy optimization.**
+**Causal uplift modeling for promotional ROI: estimating who converts *because of* the offer, not just who converts — with formal causal identification, refutation, sensitivity analysis, and budget-constrained policy optimization.**
 
 ---
 
