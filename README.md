@@ -1,6 +1,6 @@
-# Don't Target Buyers — Target the Persuadable
+# Uplift Modeling and Causal Targeting Engine
 
-**Causal uplift modeling for promotional ROI: estimating who converts *because of* the offer, not just who converts — with formal causal identification, refutation, sensitivity analysis, and budget-constrained policy optimization.**
+**Production-grade heterogeneous treatment effect estimation with formal causal identification, refutation, sensitivity analysis, and budget-constrained policy optimization.**
 
 ---
 
@@ -156,6 +156,12 @@ streamlit run app/streamlit_app.py    # interactive dashboard
 # Quality gate
 pytest && ruff check .
 ```
+
+---
+
+## Tech Stack
+
+Python 3.12 · numpy · pandas · scikit-learn · **DoWhy** · **EconML** · **SHAP** · MLflow · FastAPI · Streamlit · Plotly · pytest · ruff
 
 ---
 
