@@ -17,7 +17,11 @@ Panels
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
+
+# Ensure project root is on sys.path regardless of how streamlit is invoked
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import matplotlib
 
