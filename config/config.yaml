@@ -33,4 +33,4 @@ policy:
 
 mlflow:
   experiment_name: "causal-uplift-engine"
-  tracking_uri: "mlruns"
+  tracking_uri: "sqlite:///mlflow.db"
